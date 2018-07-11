@@ -20,7 +20,6 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_row($query);
         if (password_verify($password, $row[1])) {
             $_SESSION['logged'] = true;
-//            var_dump($_SESSION['logged']);
             header('Location: home.php');
         } else header('Location: signin.php');
     } else header('Location: signin.php');

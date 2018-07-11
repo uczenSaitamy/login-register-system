@@ -30,7 +30,7 @@ if (isset($_POST['register'])) {
                     $sql = "UPDATE `sign-up-in`.`USERS` SET `name`= '".$name."' WHERE `email`='".$email."'";
                     if ($query = mysqli_query($con, $sql)){
 
-                        $_SESSION['email'] = $email;
+                        $_SESSION['logged'] = true;
                         header('Location: home.php');
                         exit();
                     }
