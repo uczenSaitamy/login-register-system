@@ -7,16 +7,16 @@
  */
 require_once('views/header.html');
 ?>
-<div class="container">
-    <div class="row mt-5 mx-auto">
-        <div class="col-lg-3">
-            <a href="" class="btn btn-primary">Zaloguj się</a>
-        </div>
+    <div class="container">
+        <div class="row mt-5 mx-auto">
+            <div class="col-lg-3">
+                <a href="/signin.php" class="btn btn-primary">Sign in</a>
+            </div>
 
-        <div class="col-lg-3">
-            <a href="" class="btn btn-secondary">Zarejestruj się</a>
+            <div class="col-lg-3">
+                <a href="/signup.php" class="btn btn-secondary">Sign up</a>
+            </div>
         </div>
     </div>
-</div>
 <?php
 require_once('views/footer.html');
