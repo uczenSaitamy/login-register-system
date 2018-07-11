@@ -30,9 +30,9 @@ require_once('views/header.html');
         <div class="row mt-5 mx-auto">
             <div class="col">
                 <div class="display-4">
-                    check another site -->
+                    go back -->
                 </div>
-                <a href="/another.php" class="btn btn-primary">another</a>
+                <a href="/home.php" class="btn btn-primary">back</a>
             </div>
 
         </div>
