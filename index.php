@@ -6,6 +6,8 @@
  * Time: 17:52
  */
 require_once('views/header.html');
+require('config/session.php');
+
 ?>
     <div class="container">
         <div class="row mt-5 mx-auto">

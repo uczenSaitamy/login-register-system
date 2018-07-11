@@ -5,7 +5,9 @@
  * Date: 11.07.18
  * Time: 18:05
  */
+
 require_once('views/header.html');
+require('config/session.php');
 ?>
     <div class="container">
         <div class="row mt-5 mx-auto">
@@ -18,10 +20,10 @@ require_once('views/header.html');
                 <div class="display-4">
                     Sing up
                 </div>
-                <form>
+                <form method="post" action="/register.php">
                     <div class="form-group">
                         <label for="Email">Email address</label>
-                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"
+                        <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp"
                                placeholder="Enter email">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.
@@ -39,7 +41,7 @@ require_once('views/header.html');
                         <label for="Name">Name</label>
                         <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="register">Submit</button>
                 </form>
             </div>
         </div>

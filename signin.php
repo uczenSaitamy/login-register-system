@@ -6,6 +6,8 @@
  * Time: 18:10
  */
 require_once('views/header.html');
+require('config/session.php');
+
 ?>
     <div class="container">
         <div class="row mt-5 mx-auto">
@@ -18,20 +20,20 @@ require_once('views/header.html');
                 <div class="display-4">
                     Sing in
                 </div>
-                <form>
+                <form method="post" action="/login.php">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <label for="Email">Email address</label>
+                        <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp"
                                placeholder="Enter email">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="login">Submit</button>
                 </form>
             </div>
         </div>
