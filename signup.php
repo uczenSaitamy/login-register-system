@@ -21,19 +21,19 @@ require('layout/goToIndex.html');
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                           placeholder="Enter email">
+                           placeholder="Enter email" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                         else.
                     </small>
                 </div>
                 <div class="form-group">
                     <label for="password1">Password</label>
-                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                     <label for="password2">Password</label>
                     <input type="password" class="form-control" id="password2" name="password2"
-                           placeholder="Confirm Password">
+                           placeholder="Confirm Password" required>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
