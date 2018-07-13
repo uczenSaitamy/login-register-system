@@ -6,14 +6,25 @@
  * Time: 18:31
  */
 
-$localhost = 'localhost';
+$host = 'localhost';
 $user = 'damian';
 $password = '123qwe';
 $database = 'sign-up-in';
 
-$con = @mysqli_connect($localhost, $user, $password, $database);
+//$con = new mysqli($host, $user, $password, $database);
+//
+//if ($con->connect_errno) {
+//    echo "Error: " . $con->connect_error();
+//    exit();
+//}
 
-if (!$con) {
-    echo "Error: " . mysqli_connect_error();
+try
+{
+    $con = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+
+}
+catch (PDOException $e)
+{
+    echo 'Error: ' . $e->getMessage();
     exit();
 }

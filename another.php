@@ -12,8 +12,8 @@ if (!(isset($_SESSION['logged'])) && !($_SESSION['logged']==true))
     header('Location: index.php');
     exit();
 }
-
-require_once('views/header.html');
+require ('config/session.php');
+require_once('layout/header.php');
 ?>
     <div class="container">
         <div class="row mt-5 mx-auto">
@@ -23,7 +23,7 @@ require_once('views/header.html');
                 </div>
             </div>
             <div class="col">
-                <a href="/logout.php" class="btn btn-outline-danger">Logout</a>
+                <a href="/controllers/logout.php" class="btn btn-outline-danger">Logout</a>
             </div>
 
         </div>
@@ -38,4 +38,4 @@ require_once('views/header.html');
         </div>
     </div>
 <?php
-require_once('views/footer.html');
+require_once('layout/footer.html');
