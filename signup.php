@@ -28,7 +28,7 @@ require('layout/goToIndex.html');
                 </div>
                 <div class="form-group">
                     <label for="password1">Password</label>
-                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" minlength="6" required>
                 </div>
                 <div class="form-group">
                     <label for="password2">Password</label>
