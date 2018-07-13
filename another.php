@@ -5,37 +5,26 @@
  * Date: 11.07.18
  * Time: 19:30
  */
-session_start();
 
-if (!(isset($_SESSION['logged'])) && !($_SESSION['logged']==true))
-{
-    header('Location: index.php');
-    exit();
-}
-require ('config/session.php');
+require('config/secured_session.php');
 require_once('layout/header.php');
+require_once('layout/navbar.php');
 ?>
-    <div class="container">
-        <div class="row mt-5 mx-auto">
-            <div class="col">
-                <div class="display-4">
-                    Hello inside
-                </div>
+    <div class="row mt-5 mx-auto">
+        <div class="col">
+            <div class="display-4">
+                you are on another secure page
             </div>
-            <div class="col">
-                <a href="/controllers/logout.php" class="btn btn-outline-danger">Logout</a>
-            </div>
-
         </div>
-        <div class="row mt-5 mx-auto">
-            <div class="col">
-                <div class="display-4">
-                    go back -->
-                </div>
-                <a href="/home.php" class="btn btn-primary">back</a>
-            </div>
-
+    </div>
+    <div class="row mt-3 mx-auto">
+        <div class="col">
+            <p class="lead">u can't visit any other pages. But u can go back -></p>
+        </div>
+        <div class="col">
+            <a href="/home.php" class="btn btn-primary float-left">back</a>
         </div>
     </div>
 <?php
+require_once('layout/tryToVisit.php');
 require_once('layout/footer.html');

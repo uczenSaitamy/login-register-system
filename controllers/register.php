@@ -6,7 +6,7 @@
  * Time: 18:36
  */
 require('../config/config.php');
-require('../config/session.php');
+require('../config/unsecured_session.php');
 require('../class/user.php');
 
 

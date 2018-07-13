@@ -80,7 +80,7 @@ class user
     public function create()
     {
         $this->passwordHash();
-        return ($this->insert())? true : false;
+        return ($this->insert()) ? true : false;
     }
 
 

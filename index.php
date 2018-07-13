@@ -6,7 +6,7 @@
  * Time: 17:52
  */
 require_once('layout/header.php');
-require('config/session.php');
+require('config/unsecured_session.php');
 ?>
     <div class="row mt-5 mx-auto">
         <div class="col-lg-3">

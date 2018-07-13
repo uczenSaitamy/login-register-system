@@ -5,31 +5,25 @@
  * Date: 11.07.18
  * Time: 19:30
  */
-session_start();
 
-if (!(isset($_SESSION['logged'])) && !($_SESSION['logged'] == true)) {
-    header('Location: index.php');
-    exit();
-}
-
+require('config/secured_session.php');
 require_once('layout/header.php');
+require_once('layout/navbar.php');
 ?>
     <div class="row mt-5 mx-auto">
         <div class="col">
             <div class="display-4">
-                Hello inside
+                you are on secure page
             </div>
         </div>
-        <?php require('layout/logout.html') ?>
     </div>
-    <div class="row mt-5 mx-auto">
+    <div class="row mt-3 mx-auto">
         <div class="col">
-            <div class="display-4">
-                check another site -->
-            </div>
-            <a href="/another.php" class="btn btn-primary">another</a>
+            <p class="lead">u can visit another secured page by clicking this button -></p>
         </div>
-
+        <div class="col">
+            <a href="/another.php" class="btn btn-primary float-left">another</a>
+        </div>
     </div>
 <?php
 require_once('layout/footer.html');

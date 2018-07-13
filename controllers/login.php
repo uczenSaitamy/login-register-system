@@ -6,7 +6,7 @@
  * Time: 19:32
  */
 require('../config/config.php');
-require('../config/session.php');
+require('../config/unsecured_session.php');
 require('../class/user.php');
 
 
@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     if ($auth->isUser()) {
-        if (!$auth->setUser()){
+        if (!$auth->setUser()) {
             $_SESSION['message'] = 'uncaught error';
             header('Location: ../signin.php');
             exit();

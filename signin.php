@@ -6,7 +6,7 @@
  * Time: 18:10
  */
 require_once('layout/header.php');
-require('config/session.php');
+require('config/unsecured_session.php');
 require('layout/messages.php');
 require('layout/goToIndex.html');
 ?>
