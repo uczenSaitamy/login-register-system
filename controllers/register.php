@@ -23,6 +23,18 @@ if (isset($_POST['register'])) {
         if ($password1 == $password2) {
             $auth->password = $password1;
 
+            if(!$auth->checkEmailLength()){
+                $_SESSION['message-email'] = 'Email is too short( min 8) or too long(max 100)';
+                header('Location: ../signup.php');
+                exit();
+            }
+
+            if(!$auth->checkPasswordLength()){
+                $_SESSION['message-password'] = 'Password is too short( min 6) or too long(max 100)';
+                header('Location: ../signup.php');
+                exit();
+            }
+
             if ($auth->create()) {
                 $_SESSION['user'] = $auth->email;
                 $_SESSION['logged'] = true;
@@ -34,12 +46,12 @@ if (isset($_POST['register'])) {
                 exit();
             }
         } else {
-            $_SESSION['message'] = 'passwords are different';
+            $_SESSION['message-password'] = 'Passwords are different';
             header('Location: ../signup.php');
             exit();
         }
     } else {
-        $_SESSION['message'] = 'email assigned to another account';
+        $_SESSION['message-email'] = 'Email assigned to another account';
         header('Location: ../signup.php');
         exit();
     }

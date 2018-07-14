@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
 
     if ($auth->isUser()) {
         if (!$auth->setUser()) {
-            $_SESSION['message'] = 'uncaught error';
+            $_SESSION['message'] = 'Uncaught error';
             header('Location: ../signin.php');
             exit();
         }
@@ -28,16 +28,17 @@ if (isset($_POST['login'])) {
             header('Location: ../home.php');
             exit();
         } else {
-            $_SESSION['message'] = 'Incorect password';
+            $_SESSION['message-password'] = 'Incorect password';
             header('Location: ../signin.php');
             exit();
         }
     } else {
-        $_SESSION['message'] = 'There is no such user with that email';
+        $_SESSION['message-email'] = 'There is no such user with that email';
         header('Location: ../signin.php');
         exit();
     }
 } else {
+    $_SESSION['message'] = 'No request has been sent';
     header('Location: ../signin.php');
     exit();
 }

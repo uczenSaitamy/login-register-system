@@ -7,7 +7,10 @@
  */
 require_once('layout/header.php');
 require('config/unsecured_session.php');
+
+require('layout/hello.html');
 ?>
+
     <div class="row mt-5 mx-auto">
         <div class="col-lg-3">
             <a href="/signin.php" class="btn btn-primary">Sign in</a>
