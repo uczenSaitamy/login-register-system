@@ -1,0 +1,17 @@
+{
+    "name": "damian/login-register-system",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Damian",
+            "email": "linekdamian@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Router\\": "config/Router"
+        }
+    }
+}
