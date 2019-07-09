@@ -1,7 +1,20 @@
 <?php
 
-require dirname(__DIR__) .  '/config/Router/Router.php';
+require '../vendor/autoload.php';
 
-$router = new Router\Router();
+use Router\Router;
 
-$router->execute();
+// var_dump($route);exit;
+try {
+    $router = new Router();
+    $current = $router->execute();
+    $controllerName = sprintf('App\Controllers\%s', $current['controller']);
+    $controller = new $controllerName();
+    $controller->{$current['action']}();
+} catch (\Error $error) {
+    xdebug_print_function_stack($error);
+} catch (\Exception $exception) {
+    xdebug_print_function_stack($exception);
+} catch (\Throwable $throwable) {
+    xdebug_print_function_stack($throwable);
+}

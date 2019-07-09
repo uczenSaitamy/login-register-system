@@ -2,12 +2,19 @@
 
 namespace Router;
 
+use App\Controllers;
+use Exception;
+
 class Router
 {
     private $routes;
 
+    private $current;
+
     public function __construct()
     {
+        $this->current = $_SERVER['REQUEST_URI'];
+
         $routes = include(dirname(__DIR__) .  '/routes.php');
 
         foreach ($routes as $url => $closure) {
@@ -20,34 +27,36 @@ class Router
         $piece = $this->separate($closure);
 
         $this->routes[$route]['controller'] = $piece['controller'];
-        $this->routes[$route]['function'] = $piece['function'];
+        $this->routes[$route]['action'] = $piece['action'];
         $this->routes[$route]['method'] = $method;
     }
 
-    protected function separate(string $closure)
+    protected function separate(string $closure): array
     {
         $piece = explode('@', $closure, 2);
 
         return [
             'controller' => $piece[0],
-            'function' => $piece[1],
+            'action' => $piece[1],
         ];
     }
 
     public function execute()
     {
-        $path = $_SERVER['PATH_INFO'];
-
-        switch ($path) {
-            case null:
-                echo "home";
-                break;
-            case array_key_exists($path, $this->routes):
-                echo "exist";
-                break;
-            default:
-                echo "error 404";
-                break;
+        if (array_key_exists($this->current, $this->routes)) {
+            return $this->routes[$this->current];
+        } else {
+            // throw new \Exception('Page not found', 404);
+            return $this->get404();
         }
+    }
+
+    protected function get404()
+    {
+        return [
+            'controller' => 'BaseController',
+            'action' => 'error404',
+            'method' => 'GET'
+        ];
     }
 }

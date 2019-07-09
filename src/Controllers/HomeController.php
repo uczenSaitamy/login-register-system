@@ -6,7 +6,8 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        var_dump('TEST INDEX');
-        exit;
+        $controller['name'] = 'HomeController';
+        $controller['next'] = 'AnotherVar';
+        $this->render('home', ['controller' => $controller]);
     }
 }
