@@ -45,17 +45,11 @@ class Router
     public function execute()
     {
         foreach ($this->routes as $name => $data) {
-            if ($data['url'] === $this->current) {
+            if ($data['url'] === $this->current && $data['method'] === $_SERVER['REQUEST_METHOD']) {
                 return $this->routes[$name];
             }
         }
         return $this->get404();
-
-        if (array_key_exists($this->current, $this->routes)) {
-            return $this->routes[$this->current];
-        } else {
-            return $this->get404();
-        }
     }
 
     protected function get404()

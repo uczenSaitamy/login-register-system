@@ -10,9 +10,19 @@ class AuthController extends BaseController
         $this->render('index', ['page' => $page]);
     }
 
+    public function authorize()
+    {
+        var_dump('test');
+    }
+
     public function register()
     {
         $page = 'register';
         $this->render('index', ['page' => $page]);
+    }
+
+    public function store()
+    {
+        var_dump('test');
     }
 }

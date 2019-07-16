@@ -1,7 +1,7 @@
 <div class="row text-center">
     <div class="col-lg"></div>
     <div class="col-lg">
-        <form>
+        <form method="post" action="<?php echo url('authorize') ?>">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailMessage" placeholder="Enter email">
