@@ -17,18 +17,19 @@ class Router
 
         $routes = include(dirname(__DIR__) .  '/routes.php');
 
-        foreach ($routes as $url => $closure) {
-            $this->add($url, $closure);
+        foreach ($routes as $url => $data) {
+            $this->add($url, $data);
         }
     }
 
-    protected function add(string $route, string $closure, string $method = 'GET')
+    protected function add(string $route, array $data, string $method = 'GET')
     {
-        $piece = $this->separate($closure);
+        $piece = $this->separate($data[0]);
 
-        $this->routes[$route]['controller'] = $piece['controller'];
-        $this->routes[$route]['action'] = $piece['action'];
-        $this->routes[$route]['method'] = $method;
+        $this->routes[$data[1]]['controller'] = $piece['controller'];
+        $this->routes[$data[1]]['action'] = $piece['action'];
+        $this->routes[$data[1]]['url'] = $route;
+        $this->routes[$data[1]]['method'] = $method;
     }
 
     protected function separate(string $closure): array
@@ -43,10 +44,16 @@ class Router
 
     public function execute()
     {
+        foreach ($this->routes as $name => $data) {
+            if ($data['url'] === $this->current) {
+                return $this->routes[$name];
+            }
+        }
+        return $this->get404();
+
         if (array_key_exists($this->current, $this->routes)) {
             return $this->routes[$this->current];
         } else {
-            // throw new \Exception('Page not found', 404);
             return $this->get404();
         }
     }
@@ -58,5 +65,19 @@ class Router
             'action' => 'error404',
             'method' => 'GET'
         ];
+    }
+
+    public function getRoute($name)
+    {
+        if (isset($this->routes[$name])) {
+            return $this->routes[$name];
+        }
+        return $this->get404();
+    }
+
+    public function generate($name)
+    {
+        $data = $this->getRoute($name);
+        return $data['url'];
     }
 }

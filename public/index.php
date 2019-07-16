@@ -11,10 +11,6 @@ try {
     $controllerName = sprintf('App\Controllers\%s', $current['controller']);
     $controller = new $controllerName();
     $controller->{$current['action']}();
-} catch (\Error $error) {
-    xdebug_print_function_stack($error);
-} catch (\Exception $exception) {
-    xdebug_print_function_stack($exception);
 } catch (\Throwable $throwable) {
     xdebug_print_function_stack($throwable);
 }
