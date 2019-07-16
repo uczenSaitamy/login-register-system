@@ -17,19 +17,19 @@ class Router
 
         $routes = include(dirname(__DIR__) .  '/routes.php');
 
-        foreach ($routes as $url => $data) {
-            $this->add($url, $data);
+        foreach ($routes as $name => $data) {
+            $this->add($name, $data);
         }
     }
 
-    protected function add(string $route, array $data, string $method = 'GET')
+    protected function add(string $name, array $data, string $method = 'GET')
     {
         $piece = $this->separate($data[0]);
 
-        $this->routes[$data[1]]['controller'] = $piece['controller'];
-        $this->routes[$data[1]]['action'] = $piece['action'];
-        $this->routes[$data[1]]['url'] = $route;
-        $this->routes[$data[1]]['method'] = $method;
+        $this->routes[$name]['controller'] = $piece['controller'];
+        $this->routes[$name]['action'] = $piece['action'];
+        $this->routes[$name]['url'] = $data[1];
+        $this->routes[$name]['method'] = $data[2] ?? $method;
     }
 
     protected function separate(string $closure): array

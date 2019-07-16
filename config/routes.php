@@ -1,7 +1,8 @@
 <?php
 
 return [
-    "/" => ["HomeController@index", "home"],
-    "/login" => ["AuthController@login", "login"],
-    "/register" => ["AuthController@register", "register"]
+    "home" => ["HomeController@index", "/"],
+    "login" => ["AuthController@login", "/login"],
+    "authorize" => ["AuthController@authorize", "/login", "POST"],
+    "register" => ["AuthController@register", "/register"]
 ];
