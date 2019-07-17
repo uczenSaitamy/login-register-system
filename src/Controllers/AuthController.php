@@ -8,7 +8,7 @@ class AuthController extends BaseController
 {
     public function login()
     {
-        $this->render('login');
+        return $this->render('login');
     }
 
     public function authorize()
@@ -18,7 +18,7 @@ class AuthController extends BaseController
 
     public function register()
     {
-        $this->render('register');
+        return $this->render('register');
     }
 
     public function store()
@@ -29,15 +29,14 @@ class AuthController extends BaseController
             $this->request->post,
             [
                 'email' => 'email|min:6',
-                'password' => 'min:6',
-                'repeatPassword' => 'same:password',
+                'password' => 'min:6|required',
+                'repeatPassword' => 'same:password|required',
                 'rules' => 'required',
             ]
         );
 
         if ($validator->isError()) {
-            echo "there is error";
-            exit;
+            return $this->render('register', ['errors' => $validator->getErrors(), 'old' => $this->request->post]);
         }
 
         echo "data validated";

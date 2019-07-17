@@ -51,7 +51,7 @@ class Validator
                 $params = explode(':', $value);
 
                 if (!$this->check($params[0], $data[$name], $params[1] ?? null)) {
-                    $this->errors[] = $name;
+                    $this->errors[$name][] = trans('validation', $params[0], $name, $params[1] ?? null);
                 }
             }
         }
@@ -75,5 +75,10 @@ class Validator
     public function isError(): bool
     {
         return (bool) count($this->errors);
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
     }
 }
