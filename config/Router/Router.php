@@ -2,9 +2,6 @@
 
 namespace Router;
 
-use App\Controllers;
-use Exception;
-
 class Router
 {
     private $routes;
@@ -14,8 +11,7 @@ class Router
     public function __construct()
     {
         $this->current = $_SERVER['REQUEST_URI'];
-
-        $routes = include(dirname(__DIR__) .  '/routes.php');
+        $routes = include(ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'routes.php');
 
         foreach ($routes as $name => $data) {
             $this->add($name, $data);

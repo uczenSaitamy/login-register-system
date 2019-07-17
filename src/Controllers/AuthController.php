@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
+use Router\Router;
+
 class AuthController extends BaseController
 {
     public function login()
     {
-        $page = 'login';
-        $this->render('index', ['page' => $page]);
+        $this->render('login');
     }
 
     public function authorize()
@@ -17,12 +18,11 @@ class AuthController extends BaseController
 
     public function register()
     {
-        $page = 'register';
-        $this->render('index', ['page' => $page]);
+        $this->render('register');
     }
 
     public function store()
     {
-        var_dump('test');
+        var_dump('store');
     }
 }
