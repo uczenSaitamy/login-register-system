@@ -2,3 +2,15 @@
 test.php
 /vendor/
 /.vscode
+
+another.php
+home.php
+index.php
+signin.php
+signup.php
+
+/layout/*
+/controllers/*
+/class/*
+/config/secured_session.php
+/config/unsecured_session.php
