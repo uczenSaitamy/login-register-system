@@ -1,13 +1,13 @@
 /.idea
-test.php
+/test.php
 /vendor/
 /.vscode
 
-another.php
-home.php
-index.php
-signin.php
-signup.php
+/another.php
+/home.php
+/index.php
+/signin.php
+/signup.php
 
 /layout/*
 /controllers/*
