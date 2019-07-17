@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Router\Router;
+use Validator\Validator;
 
 class AuthController extends BaseController
 {
@@ -23,6 +23,23 @@ class AuthController extends BaseController
 
     public function store()
     {
-        var_dump('store');
+        $validator = new Validator;
+
+        $validator->validate(
+            $this->request->post,
+            [
+                'email' => 'email|min:6',
+                'password' => 'min:6',
+                'repeatPassword' => 'same:password',
+                'rules' => 'required',
+            ]
+        );
+
+        if ($validator->isError()) {
+            echo "there is error";
+            exit;
+        }
+
+        echo "data validated";
     }
 }

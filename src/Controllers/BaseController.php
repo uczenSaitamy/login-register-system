@@ -2,8 +2,17 @@
 
 namespace App\Controllers;
 
+use Request\Request;
+
 class BaseController
 {
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     public function error404()
     {
         $error['code'] = '404';
@@ -13,7 +22,6 @@ class BaseController
 
     public function render(string $view, array $vars = [])
     {
-        // echo ROOT . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php';exit;
         extract($vars);
         ob_start();
         require(ROOT . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR  . 'index.php');
