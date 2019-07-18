@@ -36,7 +36,7 @@ class AuthController extends BaseController
         );
 
         if ($validator->isError()) {
-            return $this->render('register', ['errors' => $validator->getErrors(), 'old' => $this->request->post]);
+            return $this->render('register', ['errors' => $validator->getErrors()]);
         }
 
         echo "data validated";

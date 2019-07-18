@@ -22,6 +22,7 @@ class BaseController
 
     public function render(string $view, array $vars = [])
     {
+        $old = $this->request->post;
         extract($vars);
         ob_start();
         require(ROOT . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR  . 'index.php');
