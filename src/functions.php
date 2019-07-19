@@ -20,3 +20,8 @@ function trans(string $file, string $key, string $attribute = null, string $addi
     $message = str_replace(':additional', $additional, $message);
     return $message;
 }
+
+function env($key, $default = null)
+{
+    return getenv($key) ?? $default;
+}

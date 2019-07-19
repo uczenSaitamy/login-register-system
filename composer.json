@@ -13,7 +13,9 @@
             "App\\": "src/",
             "Router\\": "config/Router",
             "Request\\": "config/Request",
-            "Validator\\": "config/Validator"
+            "Validator\\": "config/Validator",
+            "Environment\\": "config/Environment",
+            "Database\\": "config/Database"
         },
         "files": [
             "src/functions.php"
