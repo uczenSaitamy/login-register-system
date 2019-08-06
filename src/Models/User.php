@@ -4,6 +4,15 @@ namespace App\Models;
 
 class User extends Model
 {
+    public function __construct(array $data = [])
+    {
+        $this->setEmail($data['email']);
+        $this->setPassword($data['password']);
+        $this->setName($data['name']);
+        $this->setCreatedAt($data['created_at'] ?? date("Y-m-d H:i:s"));
+        $this->setUpdatedAt($data['updated_at'] ?? date("Y-m-d H:i:s"));
+    }
+
     private $email;
 
     /**

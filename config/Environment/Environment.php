@@ -15,7 +15,7 @@ class Environment
 
     public function loadFile()
     {
-        $this->env = file(ROOT . DIRECTORY_SEPARATOR . '.env');
+        $this->env = file(ROOT . DIRECTORY_SEPARATOR . '.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         if (!$this->env) {
             $this->env = include(ROOT . DIRECTORY_SEPARATOR . '.env.example');

@@ -4,7 +4,17 @@ namespace App\Models;
 
 class Model
 {
-    private $created_at;
+    protected $id;
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    protected $created_at;
 
     /**
      * Get the value of created_at
@@ -26,7 +36,7 @@ class Model
         return $this;
     }
 
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * Get the value of updated_at

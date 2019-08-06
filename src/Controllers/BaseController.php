@@ -8,6 +8,15 @@ class BaseController
 {
     protected $request;
 
+    protected $model;
+
+    protected $repository;
+
+    public function getRepository()
+    {
+        return new $this->repository;
+    }
+
     public function __construct(Request $request)
     {
         $this->request = $request;

@@ -3,9 +3,18 @@
 namespace App\Controllers;
 
 use Validator\Validator;
+use App\Models\User;
+use Request\Request;
+use App\Repository\UserRepository;
 
 class AuthController extends BaseController
 {
+    public function __construct(Request $request)
+    {
+        $this->repository = UserRepository::class;
+        parent::__construct($request);
+    }
+
     public function login()
     {
         return $this->render('login');
@@ -28,7 +37,7 @@ class AuthController extends BaseController
         $validator->validate(
             $this->request->post,
             [
-                'email' => 'email|min:6',
+                'email' => 'email|min:6|required',
                 'password' => 'min:6|required',
                 'repeatPassword' => 'same:password|required',
                 'rules' => 'required',
@@ -39,6 +48,12 @@ class AuthController extends BaseController
             return $this->render('register', ['errors' => $validator->getErrors()]);
         }
 
-        echo "data validated";
+        $user = new User($this->request->post);
+
+        if ($this->getRepository()->save($user)) {
+            return $this->render('home', ['msg' => 'success register']);
+        }
+
+        return $this->render('register', ['msg' => 'register failed']);
     }
 }

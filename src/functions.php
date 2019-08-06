@@ -25,3 +25,8 @@ function env($key, $default = null)
 {
     return getenv($key) ?? $default;
 }
+
+function camelCase(string $string): string
+{
+    return str_replace('_', '', ucwords($string, '_'));
+}

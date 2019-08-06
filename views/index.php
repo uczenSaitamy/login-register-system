@@ -16,6 +16,7 @@
     <div class="container">
         <?php
         include('template/header.php');
+        include('template/messages.php');
         include($view . '.php');
         include('template/footer.php') ?>
     </div>
