@@ -19,6 +19,12 @@ try {
     $current = $router->execute();
 
     $controllerName = sprintf('App\Controllers\%s', $current['controller']);
+
+    foreach ($current['middleware'] as $middleware) {
+        $action = sprintf('App\Controllers\Middleware\%sMiddleware', $middleware);
+        $action::action('test', 'test2', 'test3');
+    }
+
     $controller = new $controllerName($request);
 
     $controller->{$current['action']}();

@@ -26,6 +26,7 @@ class Router
         $this->routes[$name]['action'] = $piece['action'];
         $this->routes[$name]['url'] = $data[1];
         $this->routes[$name]['method'] = $data[2] ?? $method;
+        $this->routes[$name]['middleware'] = $data['middleware'] ?? null;
     }
 
     protected function separate(string $closure): array
