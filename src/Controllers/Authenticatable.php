@@ -13,13 +13,17 @@ trait Authenticatable
                 $_SESSION['logged'] = $user;
                 return $user;
             }
-        } else {
-            return null;
         }
+        return null;
     }
 
     public function checkPassword(User $user, string $password)
     {
         return password_verify($password, $user->getPassword());
+    }
+
+    public function unsetSession()
+    {
+        unset($_SESSION['logged']);
     }
 }

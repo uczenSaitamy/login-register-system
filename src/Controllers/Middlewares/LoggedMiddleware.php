@@ -11,6 +11,5 @@ class LoggedMiddleware extends Middleware
         if (!$_SESSION['logged']) {
             return Router::redirect(url('login'));
         }
-        var_dump($_SESSION);exit;
     }
 }

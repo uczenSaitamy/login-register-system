@@ -23,6 +23,12 @@ class AuthController extends BaseController
         return $this->render('login');
     }
 
+    public function logout()
+    {
+        $this->unsetSession();
+        Router::redirect(url('home'));
+    }
+
     public function authorize()
     {
         $validator = new Validator;
