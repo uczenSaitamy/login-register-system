@@ -37,7 +37,7 @@ class AuthController extends BaseController
         $validator->validate(
             $this->request->post,
             [
-                'email' => 'email|min:6|required',
+                'email' => 'email|min:6|required|unique:USERS,email',
                 'password' => 'min:6|required',
                 'repeatPassword' => 'same:password|required',
                 'rules' => 'required',
@@ -51,9 +51,9 @@ class AuthController extends BaseController
         $user = new User($this->request->post);
 
         if ($this->getRepository()->save($user)) {
-            return $this->render('home', ['msg' => 'success register']);
+            return $this->render('home', ['msg' => 'Registration has been successful']);
         }
 
-        return $this->render('register', ['msg' => 'register failed']);
+        return $this->render('register', ['msg' => 'Registration has been failed']);
     }
 }

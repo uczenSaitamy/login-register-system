@@ -4,6 +4,7 @@ namespace Validator;
 
 class Validator
 {
+    use Queries;
     private $patterns = [
         'email' => '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i',
         'min' => '/^\w\S{min,}+$/',
@@ -40,6 +41,12 @@ class Validator
         return (bool) $value;
     }
 
+    private function unique($value, $additional): bool
+    {
+        $additional = explode(',', $additional);
+        return !$this->findOne($additional[0], $additional[1], $value);
+    }
+
     public function validate(array $data = [], array $rules = [])
     {
         $this->data = $data;
@@ -56,12 +63,6 @@ class Validator
             }
         }
     }
-
-    // public function check(string $rule, $value, string $additional = null)
-    // {
-    //     $pattern = str_replace($rule, $additional, $this->patterns[$rule]);
-    //     return preg_match($pattern, $value);
-    // }
 
     public function check(string $rule, $value, string $additional = null)
     {
