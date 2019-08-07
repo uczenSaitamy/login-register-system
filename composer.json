@@ -11,11 +11,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Router\\": "config/Router",
-            "Request\\": "config/Request",
-            "Validator\\": "config/Validator",
-            "Environment\\": "config/Environment",
-            "Database\\": "config/Database"
+            "Router\\": "core/Router",
+            "Request\\": "core/Request",
+            "Validator\\": "core/Validator",
+            "Environment\\": "core/Environment",
+            "Database\\": "core/Database"
         },
         "files": [
             "src/functions.php"
