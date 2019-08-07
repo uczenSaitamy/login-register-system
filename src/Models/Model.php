@@ -57,4 +57,11 @@ class Model
 
         return $this;
     }
+
+    public function __construct(array $data = [])
+    {
+        $this->id = $data['id'] ?? null;
+        $this->setCreatedAt($data['created_at'] ?? date("Y-m-d H:i:s"));
+        $this->setUpdatedAt($data['updated_at'] ?? date("Y-m-d H:i:s"));
+    }
 }

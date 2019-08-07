@@ -6,11 +6,13 @@ class User extends Model
 {
     public function __construct(array $data = [])
     {
-        $this->setEmail($data['email']);
-        $this->setPassword($data['password']);
-        $this->setName($data['name']);
-        $this->setCreatedAt($data['created_at'] ?? date("Y-m-d H:i:s"));
-        $this->setUpdatedAt($data['updated_at'] ?? date("Y-m-d H:i:s"));
+        $this->email = $data['email'];
+        $this->password = $data['password'];
+        $this->name = $data['name'];
+        // $this->setEmail($data['email']);
+        // $this->setPassword($data['password']);
+        // $this->setName($data['name']);
+        parent::__construct($data);
     }
 
     private $email;

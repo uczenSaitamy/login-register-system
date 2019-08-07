@@ -6,9 +6,12 @@ use Validator\Validator;
 use App\Models\User;
 use Request\Request;
 use App\Repository\UserRepository;
+use Router\Router;
 
 class AuthController extends BaseController
 {
+    use Authenticatable;
+
     public function __construct(Request $request)
     {
         $this->repository = UserRepository::class;
@@ -22,7 +25,24 @@ class AuthController extends BaseController
 
     public function authorize()
     {
-        var_dump('test');
+        $validator = new Validator;
+        $validator->validate(
+            $this->request->post,
+            [
+                'email' => 'email|required',
+                'password' => 'required',
+            ]
+        );
+
+        if ($validator->isError()) {
+            return $this->render('login', ['errors' => $validator->getErrors()]);
+        }
+
+        if ($user = $this->attempt($this->request->post['email'], $this->request->post['password'])) {
+            Router::redirect(url('account'));
+        }
+
+        return $this->render('login', ['errors' => ['failed' => ['These credentials do not match our records.']]]);
     }
 
     public function register()
@@ -49,6 +69,7 @@ class AuthController extends BaseController
         }
 
         $user = new User($this->request->post);
+        $user->setPassword($this->request->post['password']);
 
         if ($this->getRepository()->save($user)) {
             return $this->render('home', ['msg' => 'Registration has been successful']);

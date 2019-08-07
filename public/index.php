@@ -15,7 +15,6 @@ try {
     $router = new Router;
     $request = new Request;
     $env = new Environment;
-    // $db = new Database;
 
     $current = $router->execute();
 
