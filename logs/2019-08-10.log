@@ -1,7 +1,0 @@
-[2019-08-10 15:34:24] main.WARNING: Error: test in /home/damian/Dokumenty/login-register-system/public/index.php:28 Stack trace: #0 {main} {"code":404,"message":"test","line":28,"file":"/home/damian/Dokumenty/login-register-system/public/index.php","trace":[],"previous":null} []
-[2019-08-10 15:40:20] main.INFO: User: a@a.pl logged out. [] []
-[2019-08-10 15:40:28] main.INFO: User: a@a.pl logged in. [] []
-[2019-08-10 15:40:29] main.INFO: User: a@a.pl logged out. [] []
-[2019-08-10 15:40:34] main.INFO: Login attempt failed of user: a@a.pl . [] []
-[2019-08-10 15:43:49] main.INFO: Successful registration of user: aaaa@a.pl . [] []
-[2019-08-10 15:44:06] main.INFO: Login attempt failed of user: aaaa@a.pl . [] []
