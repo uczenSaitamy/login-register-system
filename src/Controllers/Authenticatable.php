@@ -11,9 +11,11 @@ trait Authenticatable
         if ($user = $this->getRepository()->findOneByEmail($email)) {
             if ($this->checkPassword($user, $password)) {
                 $_SESSION['logged'] = $user;
+                $this->logger->info('User: ' . $_SESSION['logged']->getEmail() . ' logged in.');
                 return $user;
             }
         }
+        $this->logger->info('Login attempt failed of user: ' . $email . ' .');
         return null;
     }
 
@@ -24,6 +26,7 @@ trait Authenticatable
 
     public function unsetSession()
     {
+        $this->logger->info('User: ' . $_SESSION['logged']->getEmail() . ' logged out.');
         unset($_SESSION['logged']);
     }
 }

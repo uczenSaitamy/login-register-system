@@ -5,7 +5,8 @@ require '../vendor/autoload.php';
 use Router\Router;
 use Request\Request;
 use Environment\Environment;
-use Database\Database;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 define('ROOT', dirname(__DIR__));
 
@@ -16,18 +17,38 @@ try {
     $request = new Request;
     $env = new Environment;
 
+    $logger = new Logger('main');
+    $date = new DateTime();
+
+    $logger->pushHandler(
+        new StreamHandler(
+            ROOT . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . $date->format('Y-m-d') . '.log',
+            Logger::DEBUG
+        )
+    );
+    
     $current = $router->execute();
 
     $controllerName = sprintf('App\Controllers\%s', $current['controller']);
 
     foreach ($current['middleware'] as $middleware) {
         $action = sprintf('App\Controllers\Middleware\%sMiddleware', $middleware);
-        $action::action('test', 'test2', 'test3');
+        $action::action();
     }
 
-    $controller = new $controllerName($request);
+    $controller = new $controllerName($request, $logger);
 
     $controller->{$current['action']}();
 } catch (\Throwable $throwable) {
-    xdebug_print_function_stack($throwable);
+    $logger->warning(
+        $throwable,
+        [
+            'code' => $throwable->getCode(),
+            'message' => $throwable->getMessage(),
+            'line' => $throwable->getLine(),
+            'file' => $throwable->getFile(),
+            'trace' => $throwable->getTrace(),
+            'previous' => $throwable->getPrevious(),
+        ]
+    );
 }

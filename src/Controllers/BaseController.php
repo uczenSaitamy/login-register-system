@@ -3,10 +3,13 @@
 namespace App\Controllers;
 
 use Request\Request;
+use Monolog\Logger;
 
 class BaseController
 {
     protected $request;
+
+    protected $logger;
 
     protected $model;
 
@@ -17,9 +20,10 @@ class BaseController
         return new $this->repository;
     }
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Logger $logger)
     {
         $this->request = $request;
+        $this->logger = $logger;
     }
 
     public function error404()

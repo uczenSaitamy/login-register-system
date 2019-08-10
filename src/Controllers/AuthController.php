@@ -7,15 +7,16 @@ use App\Models\User;
 use Request\Request;
 use App\Repository\UserRepository;
 use Router\Router;
+use Monolog\Logger;
 
 class AuthController extends BaseController
 {
     use Authenticatable;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Logger $logger)
     {
         $this->repository = UserRepository::class;
-        parent::__construct($request);
+        parent::__construct($request, $logger);
     }
 
     public function login()
@@ -78,9 +79,11 @@ class AuthController extends BaseController
         $user->setPassword($this->request->post['password']);
 
         if ($this->getRepository()->save($user)) {
+            $this->logger->info('Successful registration of user: ' . $user->getEmail() . ' .');
             return $this->render('home', ['msg' => 'Registration has been successful']);
         }
 
+        $this->logger->info('Unsuccessful registration attempt of user: ' . $user->getEmail() . ' .');
         return $this->render('register', ['msg' => 'Registration has been failed']);
     }
 }
